@@ -34,6 +34,9 @@ class Municipality(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = "Municipalities"
 
 # Ethnicity Model
 class Ethnicity(models.Model):
@@ -41,6 +44,8 @@ class Ethnicity(models.Model):
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name_plural = "Ethnicities"
 
 # Occupation Model
 class Occupation(models.Model):
