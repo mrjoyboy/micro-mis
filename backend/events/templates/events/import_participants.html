@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Import Participants{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="h3">Import Participants</h1>
+    <p class="text-muted">Upload an Excel file to import participants for this event. Download the template below if
+        needed.</p>
+
+    <div class="card mb-4">
+        <div class="card-header bg-dark text-white">
+            Upload File
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="file" class="form-label">Excel File</label>
+                    <input type="file" class="form-control" id="file" name="file" required>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-upload"></i> Upload
+                </button>
+                <a href="{% url 'participant_template' %}" class="btn btn-secondary">
+                    <i class="bi bi-file-earmark-arrow-down"></i> Download Template
+                </a>
+            </form>
+        </div>
+    </div>
+
+    <a href="{% url 'event_detail' event_id %}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i> Back to Event
+    </a>
+</div>
+{% endblock %}

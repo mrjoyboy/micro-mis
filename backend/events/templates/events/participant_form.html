@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if form.instance.id %}
+Edit Participant: {{ form.instance.first_name }} {{ form.instance.last_name }}
+{% else %}
+Add Participant
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="h3">
+        {% if form.instance.id %}
+        Edit Participant: {{ form.instance.first_name }} {{ form.instance.last_name }}
+        {% else %}
+        Add Participant
+        {% endif %}
+    </h1>
+
+    <form method="post" class="mt-4">
+        {% csrf_token %}
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                Participant Information
+            </div>
+            <div class="card-body">
+                {% for field in form.visible_fields %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                    <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% if field.errors %}
+                    <div class="text-danger">{{ field.errors }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Save
+            </button>
+            <a href="{% url 'event_detail' event.id %}" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}
