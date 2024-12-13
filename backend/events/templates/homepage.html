@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center mb-5">
+        <h1 class="display-4">Welcome to Event Management System</h1>
+        <p class="lead">Streamline your events and participants with ease.</p>
+        <a href="{% url 'event_list' %}" class="btn btn-primary btn-lg">
+            <i class="bi bi-calendar-event"></i> View Events
+        </a>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-calendar3"></i> Manage Events</h5>
+                    <p class="card-text">Create, edit, and organize all your events in one place.</p>
+                    <a href="{% url 'event_create' %}" class="btn btn-outline-primary">Add Event</a>
+                </div>
+            </div>
+        </div>
+        {% comment %}
+        <!-- <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-people"></i> Manage Participants</h5>
+                    <p class="card-text">Add, import, and manage participants for your events.</p>
+                    <a href="{% url 'participant_list' %}" class="btn btn-outline-primary">View Participants</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-file-earmark-spreadsheet"></i> Export Data</h5>
+                    <p class="card-text">Export event and participant data to Excel for analysis.</p>
+                    <a href="{% url 'export_events' %}" class="btn btn-outline-primary">Export Events</a>
+                </div>
+            </div>
+        </div> -->
+        {% endcomment %}
+    </div>
+
+    <!-- <div class="mt-5 text-center">
+        <h3>Why Choose Us?</h3>
+        <p class="text-muted">Our system simplifies event management, saving you time and effort.</p>
+        <div class="row">
+            <div class="col-md-4">
+                <i class="bi bi-speedometer2 display-4 text-primary"></i>
+                <h5>Fast & Efficient</h5>
+                <p>Streamline your workflow and manage data effortlessly.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-cloud-upload display-4 text-primary"></i>
+                <h5>Data Integration</h5>
+                <p>Import and export data seamlessly for better productivity.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="bi bi-shield-check display-4 text-primary"></i>
+                <h5>Secure</h5>
+                <p>Your data is protected with industry-standard security practices.</p>
+            </div>
+        </div>
+    </div> -->
+</div>
+{% endblock %}

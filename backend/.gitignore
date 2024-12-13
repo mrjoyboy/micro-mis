@@ -1,0 +1,41 @@
+# Gitignore for Django project
+
+# Python files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+django-venv/
+.env
+
+# Django files
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+*.pid
+*.tar
+
+# Node.js
+node_modules/
+
+# Other
+*.bak
+*.tmp
+*.old
+coverage/
+reports/
