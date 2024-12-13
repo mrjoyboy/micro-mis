@@ -6,6 +6,9 @@ from openpyxl import Workbook
 from django.contrib import messages
 from django.http import HttpResponse, Http404
 
+def homepage(request):
+    return render(request, 'homepage.html')
+
 def event_list(request):
     events = Event.objects.all()
     return render(request, 'events/event_list.html', {'events': events})
