@@ -15,4 +15,14 @@ urlpatterns = [
     path('events/<int:event_id>/import_participants/', views.import_participants, name='import_participants'),
     path('participant-template/', views.participant_template, name='participant_template'),
     path('export-events/', views.export_events, name='export_events'),
+
+    path('projects/', views.project_list, name='project_list'),
+    path('projects/create/', views.project_create, name='project_create'),
+    path('projects/<int:pk>/edit/', views.project_edit, name='project_edit'),
+    path('projects/<int:pk>/delete/', views.project_delete, name='project_delete'),
+
+    path('eventtypes/', views.eventtype_list, name='eventtype_list'),
+    path('eventtypes/create/', views.eventtype_create, name='eventtype_create'),
+    path('eventtypes/<int:pk>/edit/', views.eventtype_edit, name='eventtype_edit'),
+    path('eventtypes/<int:pk>/delete/', views.eventtype_delete, name='eventtype_delete'),
 ]

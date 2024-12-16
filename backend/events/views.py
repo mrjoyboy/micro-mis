@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, EventType, Province, District, Municipality, Participant
-from .forms import EventForm, ParticipantForm
+from .models import Event, EventType, Province, District, Municipality, Participant, Project, Ethnicity, Occupation
+from .forms import EventForm, ParticipantForm, ProjectForm, EventTypeForm
 import openpyxl
 from openpyxl import Workbook
 from django.contrib import messages
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, JsonResponse
 
 def homepage(request):
     return render(request, 'homepage.html')
@@ -43,14 +43,29 @@ def event_delete(request, pk):
     return redirect('event_list')
 
 
-def event_detail(request, event_id):
-    event = get_object_or_404(Event, id=event_id)
+def event_detail(request, pk):
+    event = get_object_or_404(Event, pk=pk)
+
+    # Get participants for the event
     participants = Participant.objects.filter(event=event)
-    return render(request, 'events/event_detail.html', {
+
+    # Total number of participants
+    total_participants = participants.count()
+
+    # Ethnicity counts
+    ethnicity_counts = participants.values('ethnicity__name').annotate(count=models.Count('id'))
+
+    # Certified participants count
+    certified_count = participants.filter(certification=True).count()
+
+    context = {
         'event': event,
         'participants': participants,
-    })
-
+        'total_participants': total_participants,
+        'ethnicity_counts': ethnicity_counts,
+        'certified_count': certified_count,
+    }
+    return render(request, 'event_detail.html', context)
 
 
 
@@ -102,7 +117,7 @@ def import_participants(request, event_id):
         wb = openpyxl.load_workbook(excel_file)
         sheet = wb.active
         for row in sheet.iter_rows(min_row=2, values_only=True):  # Skip header row
-            first_name, last_name, ethnicity, occupation, email, phone_number, address = row
+            title, first_name, last_name, email, phone_number, address, gender, ethnicity, disability, occupation, organization, organization_designation, certification = row
             # Find or create ethnicity and occupation
             ethnicity_obj, created = Ethnicity.objects.get_or_create(name=ethnicity)
             occupation_obj, created = Occupation.objects.get_or_create(name=occupation)
@@ -178,7 +193,8 @@ def export_events(request):
             event.venue,
             event.latitude,
             event.longitude,
-            event.partner_name,
+            event.organizing_partners,
+            event.funding_partners
         ])
 
     # Prepare the response
@@ -190,3 +206,83 @@ def export_events(request):
     # Save workbook to the response
     workbook.save(response)
     return response
+
+
+
+
+# PROJECTS
+# List projects
+def project_list(request):
+    projects = Project.objects.all()
+    return render(request, 'project/project_list.html', {'projects': projects})
+
+# Create a project
+def project_create(request):
+    if request.method == 'POST':
+        form = ProjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('project_list')
+    else:
+        form = ProjectForm()
+    return render(request, 'project/project_form.html', {'form': form, 'title': 'Add Project'})
+
+# Update a project
+def project_edit(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('project_list')
+    else:
+        form = ProjectForm(instance=project)
+    return render(request, 'project/project_form.html', {'form': form, 'title': 'Edit Project'})
+
+# Delete a project
+def project_delete(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.method == 'POST':
+        project.delete()
+        return JsonResponse({'status': 'success'})
+    return render(request, 'project/project_confirm_delete.html', {'project': project})
+
+
+
+# EVENT TYPES
+
+# List event types
+def eventtype_list(request):
+    eventtypes = EventType.objects.all()
+    return render(request, 'eventtype/eventtype_list.html', {'eventtypes': eventtypes})
+
+# Create event type
+def eventtype_create(request):
+    if request.method == 'POST':
+        form = EventTypeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('eventtype_list')
+    else:
+        form = EventTypeForm()
+    return render(request, 'eventtype/eventtype_form.html', {'form': form, 'title': 'Add Event Type'})
+
+# Update event type
+def eventtype_edit(request, pk):
+    eventtype = get_object_or_404(EventType, pk=pk)
+    if request.method == 'POST':
+        form = EventTypeForm(request.POST, instance=eventtype)
+        if form.is_valid():
+            form.save()
+            return redirect('eventtype_list')
+    else:
+        form = EventTypeForm(instance=eventtype)
+    return render(request, 'eventtype/eventtype_form.html', {'form': form, 'title': 'Edit Event Type'})
+
+# Delete event type
+def eventtype_delete(request, pk):
+    eventtype = get_object_or_404(EventType, pk=pk)
+    if request.method == 'POST':
+        eventtype.delete()
+        return redirect('eventtype_list')
+    return render(request, 'eventtype/eventtype_confirm_delete.html', {'eventtype': eventtype})

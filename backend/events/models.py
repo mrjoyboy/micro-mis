@@ -38,6 +38,19 @@ class Municipality(models.Model):
     class Meta:
         verbose_name_plural = "Municipalities"
 
+class Title(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Gender(models.Model):
+    name = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name
+
 # Ethnicity Model
 class Ethnicity(models.Model):
     name = models.CharField(max_length=100)
@@ -77,20 +90,29 @@ class Event(models.Model):
     venue = models.CharField(max_length=255)
     latitude = models.FloatField()
     longitude = models.FloatField()
-    partner_name = models.CharField(max_length=100)
+    organizing_partners = models.CharField(max_length=255)
+    funding_partners = models.CharField(max_length=255)
+
 
     def __str__(self):
         return self.name
 
 class Participant(models.Model):
-    event = models.ForeignKey('Event', on_delete=models.CASCADE)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='participants')
+    title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True, blank=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    ethnicity = models.ForeignKey('Ethnicity', on_delete=models.SET_NULL, null=True, blank=True)
-    occupation = models.ForeignKey('Occupation', on_delete=models.SET_NULL, null=True, blank=True)
     email = models.EmailField(max_length=100)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     address = models.TextField(blank=True, null=True)
+    gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True, blank=True)
+    ethnicity = models.ForeignKey(Ethnicity, on_delete=models.SET_NULL, null=True, blank=True)
+    disability = models.BooleanField(default=False)
+    occupation = models.ForeignKey(Occupation, on_delete=models.SET_NULL, null=True, blank=True)
+    organization = models.CharField(max_length=255, null=True, blank=True)
+    organization_designation = models.CharField(max_length=255, null=True, blank=True)
+    certification = models.BooleanField(default=False)
+    
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

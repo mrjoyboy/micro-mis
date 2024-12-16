@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import EventType, Province, District, Municipality, Ethnicity, Occupation, Project, Event
+from .models import EventType, Province, District, Municipality, Ethnicity, Occupation, Project, Event, Participant
 
 admin.site.register(EventType)
 admin.site.register(Province)
@@ -9,3 +9,5 @@ admin.site.register(Ethnicity)
 admin.site.register(Occupation)
 admin.site.register(Project)
 admin.site.register(Event)
+admin.site.register(Participant)
+
