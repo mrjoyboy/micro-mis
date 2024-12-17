@@ -1,0 +1,849 @@
+[
+    {
+        "model": "events.district",
+        "pk": 1,
+        "fields": {
+            "name": "Bhojpur",
+            "province": 1,
+            "area_sq_km": "1507",
+            "website": "https://www.ddcbhojpur.gov.np",
+            "headquarter": "Bhojpur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 2,
+        "fields": {
+            "name": "Dhankuta",
+            "province": 1,
+            "area_sq_km": "892",
+            "website": "https://www.ddcdhankuta.gov.np",
+            "headquarter": "Dhankuta"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 3,
+        "fields": {
+            "name": "Ilam",
+            "province": 1,
+            "area_sq_km": "1703",
+            "website": "https://www.ddcilam.gov.np",
+            "headquarter": "Ilam"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 4,
+        "fields": {
+            "name": "Jhapa",
+            "province": 1,
+            "area_sq_km": "1606",
+            "website": "https://www.ddcjhapa.gov.np",
+            "headquarter": "Bhadrapur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 5,
+        "fields": {
+            "name": "Khotang",
+            "province": 1,
+            "area_sq_km": "1591",
+            "website": "https://www.dcckhotang.gov.np",
+            "headquarter": "Diktel"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 6,
+        "fields": {
+            "name": "Morang",
+            "province": 1,
+            "area_sq_km": "1855",
+            "website": "https://www.ddcmorang.gov.np",
+            "headquarter": "Biratnagar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 7,
+        "fields": {
+            "name": "Okhaldhunga",
+            "province": 1,
+            "area_sq_km": "1074",
+            "website": "https://www.dccokhaldhunga.gov.np/en",
+            "headquarter": "Siddhicharan"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 8,
+        "fields": {
+            "name": "Pachthar",
+            "province": 1,
+            "area_sq_km": "1241",
+            "website": "https://www.ddcpanchthar.gov.np",
+            "headquarter": "Phidim"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 9,
+        "fields": {
+            "name": "Sankhuwasabha",
+            "province": 1,
+            "area_sq_km": "3480",
+            "website": "https://www.ddcsankhuwasabha.gov.np",
+            "headquarter": "Khandbari"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 10,
+        "fields": {
+            "name": "Solukhumbu",
+            "province": 1,
+            "area_sq_km": "3312",
+            "website": "https://www.ddcsolukhumbu.gov.np",
+            "headquarter": "Salleri"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 11,
+        "fields": {
+            "name": "Sunsari",
+            "province": 1,
+            "area_sq_km": "1257",
+            "website": "https://www.ddcsunsari.gov.np",
+            "headquarter": "Inaruwa"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 12,
+        "fields": {
+            "name": "Taplejung",
+            "province": 1,
+            "area_sq_km": "3646",
+            "website": "https://www.ddctaplejung.gov.np",
+            "headquarter": "Taplejung"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 13,
+        "fields": {
+            "name": "Terhathum",
+            "province": 1,
+            "area_sq_km": "679",
+            "website": "https://www.ddctehrathum.gov.np",
+            "headquarter": "Myanglung"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 14,
+        "fields": {
+            "name": "Udayapur",
+            "province": 1,
+            "area_sq_km": "2063",
+            "website": "https://www.ddcudayapur.gov.np",
+            "headquarter": "Gaighat"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 15,
+        "fields": {
+            "name": "Parsa",
+            "province": 2,
+            "area_sq_km": "1353",
+            "website": "https://dccparsa.gov.np/",
+            "headquarter": "Birgunj"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 16,
+        "fields": {
+            "name": "Bara",
+            "province": 2,
+            "area_sq_km": "1190",
+            "website": "https://dccbara.gov.np/",
+            "headquarter": "Kalaiya"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 17,
+        "fields": {
+            "name": "Rautahat",
+            "province": 2,
+            "area_sq_km": "1126",
+            "website": "https://dccrautahat.gov.np/",
+            "headquarter": "Gaur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 18,
+        "fields": {
+            "name": "Sarlahi",
+            "province": 2,
+            "area_sq_km": "1259",
+            "website": "https://dccsarlahi.gov.np/",
+            "headquarter": "Malangawa"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 19,
+        "fields": {
+            "name": "Siraha",
+            "province": 2,
+            "area_sq_km": "1188",
+            "website": "https://dccsiraha.gov.np/",
+            "headquarter": "Siraha"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 20,
+        "fields": {
+            "name": "Dhanusha",
+            "province": 2,
+            "area_sq_km": "1180",
+            "website": "https://dccdhanusha.gov.np/",
+            "headquarter": "Janakpur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 21,
+        "fields": {
+            "name": "Saptari",
+            "province": 2,
+            "area_sq_km": "1363",
+            "website": "https://dccsaptari.gov.np/",
+            "headquarter": "Rajbiraj"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 22,
+        "fields": {
+            "name": "Mahottari",
+            "province": 2,
+            "area_sq_km": "1002",
+            "website": "https://dccmahottari.gov.np/",
+            "headquarter": "Jaleshwar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 23,
+        "fields": {
+            "name": "Bhaktapur",
+            "province": 3,
+            "area_sq_km": "119",
+            "website": "https://dccbhaktapur.gov.np/",
+            "headquarter": "Bhaktapur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 24,
+        "fields": {
+            "name": "Chitwan",
+            "province": 3,
+            "area_sq_km": "2218",
+            "website": "https://dccchitwan.gov.np/",
+            "headquarter": "Bharatpur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 25,
+        "fields": {
+            "name": "Dhading",
+            "province": 3,
+            "area_sq_km": "1926",
+            "website": "https://dccdhading.gov.np/",
+            "headquarter": "Nilkantha"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 26,
+        "fields": {
+            "name": "Dolakha",
+            "province": 3,
+            "area_sq_km": "2191",
+            "website": "https://dccdolakha.gov.np/",
+            "headquarter": "Bhimeshwar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 27,
+        "fields": {
+            "name": "Kathmandu",
+            "province": 3,
+            "area_sq_km": "395",
+            "website": "https://dccktm.gov.np/",
+            "headquarter": "Kathmandu"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 28,
+        "fields": {
+            "name": "Kavrepalanchok",
+            "province": 3,
+            "area_sq_km": "1396",
+            "website": "https://dcckavre.gov.np/",
+            "headquarter": "Dhulikhel"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 29,
+        "fields": {
+            "name": "Lalitpur",
+            "province": 3,
+            "area_sq_km": "385",
+            "website": "https://dcclalitpur.gov.np/",
+            "headquarter": "Lalitpur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 30,
+        "fields": {
+            "name": "Makwanpur",
+            "province": 3,
+            "area_sq_km": "2426",
+            "website": "https://dccmakwanpur.gov.np/",
+            "headquarter": "Hetauda"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 31,
+        "fields": {
+            "name": "Nuwakot",
+            "province": 3,
+            "area_sq_km": "1121",
+            "website": "https://dccnuwakot.gov.np/",
+            "headquarter": "Bidur"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 32,
+        "fields": {
+            "name": "Ramechap",
+            "province": 3,
+            "area_sq_km": "1546",
+            "website": "https://dccramechhap.gov.np/",
+            "headquarter": "Manthali"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 33,
+        "fields": {
+            "name": "Rasuwa",
+            "province": 3,
+            "area_sq_km": "1544",
+            "website": "https://dccrasuwa.gov.np/",
+            "headquarter": "Dhunche"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 34,
+        "fields": {
+            "name": "Sindhuli",
+            "province": 3,
+            "area_sq_km": "2491",
+            "website": "https://dccsindhuli.gov.np/",
+            "headquarter": "Kamalamai"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 35,
+        "fields": {
+            "name": "Sindhupalchok",
+            "province": 3,
+            "area_sq_km": "2542",
+            "website": "https://dccsindhupalchowk.gov.np/",
+            "headquarter": "Chautara"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 36,
+        "fields": {
+            "name": "Baglung",
+            "province": 4,
+            "area_sq_km": "1784",
+            "website": "https://dccbaglung.gov.np/",
+            "headquarter": "Baglung"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 37,
+        "fields": {
+            "name": "Gorkha",
+            "province": 4,
+            "area_sq_km": "3610",
+            "website": "https://dccgorkha.gov.np/",
+            "headquarter": "Gorkha"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 38,
+        "fields": {
+            "name": "Kaski",
+            "province": 4,
+            "area_sq_km": "2017",
+            "website": "https://dcckaski.gov.np/",
+            "headquarter": "Pokhara"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 39,
+        "fields": {
+            "name": "Lamjung",
+            "province": 4,
+            "area_sq_km": "1692",
+            "website": "https://dcclamjung.gov.np/",
+            "headquarter": "Besisahar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 40,
+        "fields": {
+            "name": "Manang",
+            "province": 4,
+            "area_sq_km": "2246",
+            "website": "https://dccmanang.gov.np/",
+            "headquarter": "Chame"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 41,
+        "fields": {
+            "name": "Mustang",
+            "province": 4,
+            "area_sq_km": "3573",
+            "website": "https://dccmustang.gov.np/",
+            "headquarter": "Jomsom"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 42,
+        "fields": {
+            "name": "Myagdi",
+            "province": 4,
+            "area_sq_km": "2297",
+            "website": "https://dccmyagdi.gov.np/",
+            "headquarter": "Beni"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 43,
+        "fields": {
+            "name": "Nawalpur",
+            "province": 4,
+            "area_sq_km": "1043.1",
+            "website": "https://dccnawalparasi.gov.np/",
+            "headquarter": "Kawasoti"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 44,
+        "fields": {
+            "name": "Parwat",
+            "province": 4,
+            "area_sq_km": "494",
+            "website": "https://dccparbat.gov.np/",
+            "headquarter": "Kusma"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 45,
+        "fields": {
+            "name": "Syangja",
+            "province": 4,
+            "area_sq_km": "1164",
+            "website": "https://dccsyangja.gov.np/",
+            "headquarter": "Putalibazar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 46,
+        "fields": {
+            "name": "Tanahun",
+            "province": 4,
+            "area_sq_km": "1546",
+            "website": "https://dcctanahun.gov.np/",
+            "headquarter": "Damauli"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 47,
+        "fields": {
+            "name": "Kapilvastu",
+            "province": 5,
+            "area_sq_km": "1738",
+            "website": "https://dcckapilvastu.gov.np/",
+            "headquarter": "Taulihawa"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 48,
+        "fields": {
+            "name": "Parasi",
+            "province": 5,
+            "area_sq_km": "634.88",
+            "website": "https://dccnawalparasi.gov.np/",
+            "headquarter": "Ramgram"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 49,
+        "fields": {
+            "name": "Rupandehi",
+            "province": 5,
+            "area_sq_km": "1360",
+            "website": "https://dccrupandehi.gov.np/",
+            "headquarter": "Siddharthanagar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 50,
+        "fields": {
+            "name": "Arghakhanchi",
+            "province": 5,
+            "area_sq_km": "1193",
+            "website": "https://dccargakhanchi.gov.np/",
+            "headquarter": "Sandhikharka"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 51,
+        "fields": {
+            "name": "Gulmi",
+            "province": 5,
+            "area_sq_km": "1149",
+            "website": "https://dccgulmi.gov.np/",
+            "headquarter": "Tamghas"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 52,
+        "fields": {
+            "name": "Palpa",
+            "province": 5,
+            "area_sq_km": "1373",
+            "website": "https://dccpalpa.gov.np/",
+            "headquarter": "Tansen"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 53,
+        "fields": {
+            "name": "Dang",
+            "province": 5,
+            "area_sq_km": "2955",
+            "website": "https://dccdang.gov.np/",
+            "headquarter": "Ghorahi"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 54,
+        "fields": {
+            "name": "Pyuthan",
+            "province": 5,
+            "area_sq_km": "1309",
+            "website": "https://dccpyuthan.gov.np/",
+            "headquarter": "Pyuthan"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 55,
+        "fields": {
+            "name": "Rolpa",
+            "province": 5,
+            "area_sq_km": "1879",
+            "website": "https://dccrolpa.gov.np/",
+            "headquarter": "Liwang"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 56,
+        "fields": {
+            "name": "Eastern Rukum",
+            "province": 5,
+            "area_sq_km": "1161.13",
+            "website": "https://dccrukum.gov.np/",
+            "headquarter": "Rukumkot"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 57,
+        "fields": {
+            "name": "Banke",
+            "province": 5,
+            "area_sq_km": "2337",
+            "website": "https://dccbanke.gov.np/",
+            "headquarter": "Nepalganj"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 58,
+        "fields": {
+            "name": "Bardiya",
+            "province": 5,
+            "area_sq_km": "2025",
+            "website": "https://dccbardiya.gov.np/",
+            "headquarter": "Gulariya"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 59,
+        "fields": {
+            "name": "Western Rukum",
+            "province": 6,
+            "area_sq_km": "1213.49",
+            "website": "https://dccrukum.gov.np/",
+            "headquarter": "Musikot"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 60,
+        "fields": {
+            "name": "Salyan",
+            "province": 6,
+            "area_sq_km": "1462",
+            "website": "https://dccsalyan.gov.np/",
+            "headquarter": "Salyan"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 61,
+        "fields": {
+            "name": "Dolpa",
+            "province": 6,
+            "area_sq_km": "7889",
+            "website": "https://dccdolpa.gov.np/",
+            "headquarter": "Dunai"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 62,
+        "fields": {
+            "name": "Humla",
+            "province": 6,
+            "area_sq_km": "5655",
+            "website": "https://dcchumla.gov.np/",
+            "headquarter": "Simikot"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 63,
+        "fields": {
+            "name": "Jumla",
+            "province": 6,
+            "area_sq_km": "2531",
+            "website": "https://dccjumla.gov.np/",
+            "headquarter": "Chandannath"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 64,
+        "fields": {
+            "name": "Kalikot",
+            "province": 6,
+            "area_sq_km": "1741",
+            "website": "https://dcckalikot.gov.np/",
+            "headquarter": "Manma"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 65,
+        "fields": {
+            "name": "Mugu",
+            "province": 6,
+            "area_sq_km": "3535",
+            "website": "https://dccmugu.gov.np/",
+            "headquarter": "Gamgadhi"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 66,
+        "fields": {
+            "name": "Surkhet",
+            "province": 6,
+            "area_sq_km": "2451",
+            "website": "https://dccsurkhet.gov.np/",
+            "headquarter": "Birendranagar"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 67,
+        "fields": {
+            "name": "Dailekh",
+            "province": 6,
+            "area_sq_km": "1502",
+            "website": "https://dccdailekh.gov.np/",
+            "headquarter": "Dailekh"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 68,
+        "fields": {
+            "name": "Jajarkot",
+            "province": 6,
+            "area_sq_km": "2230",
+            "website": "https://dccjajarkot.gov.np/",
+            "headquarter": "Khalanga"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 69,
+        "fields": {
+            "name": "Darchula",
+            "province": 7,
+            "area_sq_km": "2344.61",
+            "website": "https://ddcdarchula.gov.np/",
+            "headquarter": "Darchula"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 70,
+        "fields": {
+            "name": "Bajhang",
+            "province": 7,
+            "area_sq_km": "3394.21",
+            "website": "https://dccbajhang.gov.np/",
+            "headquarter": "Jayaprithvi"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 71,
+        "fields": {
+            "name": "Bajura",
+            "province": 7,
+            "area_sq_km": "2300.34",
+            "website": "https://dccbajura.gov.np/",
+            "headquarter": "Badimalika"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 72,
+        "fields": {
+            "name": "Baitadi",
+            "province": 7,
+            "area_sq_km": "1496.04",
+            "website": "https://dccbaitadi.gov.np/",
+            "headquarter": "Dasharathchand"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 73,
+        "fields": {
+            "name": "Doti",
+            "province": 7,
+            "area_sq_km": "2295.71",
+            "website": "https://dccdoti.gov.np/",
+            "headquarter": "Dipayal Silgadhi"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 74,
+        "fields": {
+            "name": "Acham",
+            "province": 7,
+            "area_sq_km": "1692",
+            "website": "https://dccacham.gov.np/",
+            "headquarter": "Mangalsen"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 75,
+        "fields": {
+            "name": "Dadeldhura",
+            "province": 7,
+            "area_sq_km": "1506.09",
+            "website": "https://dccdadeldhura.gov.np/",
+            "headquarter": "Amargadhi"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 76,
+        "fields": {
+            "name": "Kanchanpur",
+            "province": 7,
+            "area_sq_km": "1222.31",
+            "website": "https://dcckanchanpur.gov.np/",
+            "headquarter": "Bheemdatta"
+        }
+    },
+    {
+        "model": "events.district",
+        "pk": 77,
+        "fields": {
+            "name": "Kailali",
+            "province": 7,
+            "area_sq_km": "3292.35",
+            "website": "https://dcckailali.gov.np/",
+            "headquarter": "Dhangadhi"
+        }
+    }
+]

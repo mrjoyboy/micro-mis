@@ -1,0 +1,5 @@
+- model: events.eventType
+  pk: 1
+  fields:
+    name: training
+    description: nice training

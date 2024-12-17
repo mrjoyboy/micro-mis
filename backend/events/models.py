@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
 
 # Event Type Model
 class EventType(models.Model):
@@ -14,6 +12,9 @@ class EventType(models.Model):
 # Province Model
 class Province(models.Model):
     name = models.CharField(max_length=100)
+    area_sq_km = models.FloatField()
+    website = models.CharField(max_length=255)
+    headquarter = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
@@ -22,14 +23,27 @@ class Province(models.Model):
 class District(models.Model):
     name = models.CharField(max_length=100)
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    area_sq_km = models.FloatField()
+    website = models.CharField(max_length=255)
+    headquarter = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
 # Municipality Model
+
+class MunicipalityType(models.Model):
+    name = models.CharField(max_length=100)
+    short_code = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 class Municipality(models.Model):
     name = models.CharField(max_length=100)
     district = models.ForeignKey(District, on_delete=models.CASCADE)
+    municipality_type = models.ForeignKey(MunicipalityType, on_delete=models.CASCADE)
+    area_sq_km = models.FloatField()
+    website = models.CharField(max_length=255)
     no_of_wards = models.IntegerField()
 
     def __str__(self):

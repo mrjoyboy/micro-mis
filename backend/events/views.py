@@ -5,6 +5,7 @@ import openpyxl
 from openpyxl import Workbook
 from django.contrib import messages
 from django.http import HttpResponse, Http404, JsonResponse
+from django.db.models import Count
 
 def homepage(request):
     return render(request, 'homepage.html')
@@ -53,7 +54,7 @@ def event_detail(request, pk):
     total_participants = participants.count()
 
     # Ethnicity counts
-    ethnicity_counts = participants.values('ethnicity__name').annotate(count=models.Count('id'))
+    ethnicity_counts = participants.values('ethnicity__name').annotate(count=Count('id'))
 
     # Certified participants count
     certified_count = participants.filter(certification=True).count()
@@ -65,7 +66,7 @@ def event_detail(request, pk):
         'ethnicity_counts': ethnicity_counts,
         'certified_count': certified_count,
     }
-    return render(request, 'event_detail.html', context)
+    return render(request, 'events/event_detail.html', context)
 
 
 

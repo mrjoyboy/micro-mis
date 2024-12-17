@@ -1,0 +1,138 @@
+- model: events.title
+  pk: 1
+  fields:
+    name: Mr.
+- model: events.title
+  pk: 2
+  fields:
+    name: Ms.
+- model: events.title
+  pk: 3
+  fields:
+    name: Mrs.
+
+- model: events.gender
+  pk: 1
+  fields:
+    name: Male
+- model: events.gender
+  pk: 2
+  fields:
+    name: Female
+- model: events.gender
+  pk: 3
+  fields:
+    name: Others
+
+
+- model: events.ethnicity
+  pk: 1
+  fields:
+    name: Brahmin/Chhetri
+- model: events.ethnicity
+  pk: 2
+  fields:
+    name: Newar
+- model: events.ethnicity
+  pk: 3
+  fields:
+    name: Janajati
+- model: events.ethnicity
+  pk: 4
+  fields:
+    name: Dalit
+- model: events.ethnicity
+  pk: 5
+  fields:
+    name: Madheshi
+- model: events.ethnicity
+  pk: 6
+  fields:
+    name: Muslim
+- model: events.ethnicity
+  pk: 7
+  fields:
+    name: Others
+
+
+- model: events.occupation
+  pk: 1
+  fields:
+    name: Service
+- model: events.occupation
+  pk: 2
+  fields:
+    name: Business
+- model: events.occupation
+  pk: 3
+  fields:
+    name: Agriculture
+- model: events.occupation
+  pk: 4
+  fields:
+    name: Daily Wage
+- model: events.occupation
+  pk: 5
+  fields:
+    name: Engineer
+- model: events.occupation
+  pk: 6
+  fields:
+    name: Architect
+- model: events.occupation
+  pk: 7
+  fields:
+    name: Doctor
+- model: events.occupation
+  pk: 8
+  fields:
+    name: Mason
+- model: events.occupation
+  pk: 9
+  fields:
+    name: Contractor
+- model: events.occupation
+  pk: 10
+  fields:
+    name: Others
+- model: events.occupation
+  pk: 11
+  fields:
+    name: NA
+
+
+# Province data
+
+# - model: events.province
+#   pk: 1
+#   fields:
+#     name: Province no. 1
+# - model: events.district
+#   pk: 1
+#   fields:
+#     name: Illam
+#     province: 1
+
+- model: events.municipalityType
+  pk: 1
+  fields:
+    name: Metropolitan City
+    short_code: MC
+- model: events.municipalityType
+  pk: 2
+  fields:
+    name: Sub-Metropolitan City
+    short_code: SMC
+- model: events.municipalityType
+  pk: 3
+  fields:
+    name: Municipality
+    short_code: M
+- model: events.municipalityType
+  pk: 4
+  fields:
+    name: Rural Municipality
+    short_code: RM
+
+
+
