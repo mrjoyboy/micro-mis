@@ -4,7 +4,7 @@ from .models import Event, Participant, Project, EventType
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'start_date', 'end_date', 'event_type', 'province', 'district', 'municipality', 'ward_no', 'venue', 'latitude', 'longitude', 'organizing_partners', 'funding_partners']
+        fields = ['name', 'project', 'start_date', 'end_date', 'event_type', 'province', 'district', 'municipality', 'ward_no', 'venue', 'latitude', 'longitude', 'organizing_partners', 'funding_partners']
         widgets = {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),

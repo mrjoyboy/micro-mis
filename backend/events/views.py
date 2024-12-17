@@ -55,6 +55,8 @@ def event_detail(request, pk):
 
     # Ethnicity counts
     ethnicity_counts = participants.values('ethnicity__name').annotate(count=Count('id'))
+    
+    gender_counts = participants.values('gender__name').annotate(count=Count('id'))
 
     # Certified participants count
     certified_count = participants.filter(certification=True).count()
@@ -65,6 +67,7 @@ def event_detail(request, pk):
         'total_participants': total_participants,
         'ethnicity_counts': ethnicity_counts,
         'certified_count': certified_count,
+        'gender_counts': gender_counts,
     }
     return render(request, 'events/event_detail.html', context)
 

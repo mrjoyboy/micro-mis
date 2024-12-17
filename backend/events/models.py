@@ -94,6 +94,7 @@ class Project(models.Model):
 # Event Model
 class Event(models.Model):
     name = models.CharField(max_length=100)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
     event_type = models.ForeignKey(EventType, on_delete=models.SET_NULL, null=True)

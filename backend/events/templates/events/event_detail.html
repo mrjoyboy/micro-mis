@@ -10,13 +10,14 @@
         <div class="col-md-6">
             <p><strong>Description:</strong> {{ event.description }}</p>
             <p><strong>Date:</strong> {{ event.start_date }} to {{ event.end_date }}</p>
-            <p><strong>Location:</strong> 
-                {{ event.province.name }}, 
-                {{ event.district.name }}, 
+            <p><strong>Location:</strong>
+                {{ event.province.name }},
+                {{ event.district.name }},
                 {{ event.municipality.name }} (Ward: {{ event.ward_no }})
             </p>
+            <p><strong>Project:</strong> {{ event.project.name }}</p>
             <p><strong>Venue:</strong> {{ event.venue }}</p>
-            <p><strong>Partner:</strong> {{ event.partner_name }}</p>
+            <!-- <p><strong>Partner:</strong> {{ event.partner_name }}</p> -->
         </div>
     </div>
 
@@ -44,9 +45,23 @@
                 <div class="card-body">
                     <h5 class="card-title text-info"><i class="bi bi-bar-chart"></i> Ethnicity Breakdown</h5>
                     {% for ethnicity in ethnicity_counts %}
-                        <p>{{ ethnicity.ethnicity__name }}: {{ ethnicity.count }}</p>
+                    <p>{{ ethnicity.ethnicity__name }}: {{ ethnicity.count }}</p>
                     {% empty %}
-                        <p>No ethnicity data available.</p>
+                    <p>No ethnicity data available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title text-info"><i class="bi bi-bar-chart"></i> Gender Breakdown</h5>
+                    {% for gender in gender_counts %}
+                    <p>{{ gender.gender__name }}: {{ gender.count }}</p>
+                    {% empty %}
+                    <p>No gender data available.</p>
                     {% endfor %}
                 </div>
             </div>
@@ -86,39 +101,39 @@
                 <td>{{ participant.phone_number }}</td>
                 <td>
                     {% if participant.gender %}
-                        {{ participant.gender.name }}
+                    {{ participant.gender.name }}
                     {% else %}
-                        N/A
+                    N/A
                     {% endif %}
                 </td>
                 <td>
                     {% if participant.ethnicity %}
-                        {{ participant.ethnicity.name }}
+                    {{ participant.ethnicity.name }}
                     {% else %}
-                        N/A
+                    N/A
                     {% endif %}
                 </td>
                 <td>
                     {% if participant.occupation %}
-                        {{ participant.occupation.name }}
+                    {{ participant.occupation.name }}
                     {% else %}
-                        N/A
+                    N/A
                     {% endif %}
                 </td>
                 <td>{{ participant.organization|default:"N/A" }}</td>
                 <td>{{ participant.organization_designation|default:"N/A" }}</td>
                 <td>
                     {% if participant.disability %}
-                        <span class="badge bg-warning">Yes</span>
+                    <span class="badge bg-warning">Yes</span>
                     {% else %}
-                        <span class="badge bg-secondary">No</span>
+                    <span class="badge bg-secondary">No</span>
                     {% endif %}
                 </td>
                 <td>
                     {% if participant.certification %}
-                        <span class="badge bg-success">Yes</span>
+                    <span class="badge bg-success">Yes</span>
                     {% else %}
-                        <span class="badge bg-secondary">No</span>
+                    <span class="badge bg-secondary">No</span>
                     {% endif %}
                 </td>
             </tr>
