@@ -4,7 +4,7 @@ from django.db import models
 # Event Type Model
 class EventType(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
@@ -80,6 +80,12 @@ class Occupation(models.Model):
 
     def __str__(self):
         return self.name
+    
+class CertifiedStatus(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 # Project Model
 class Project(models.Model):
@@ -113,21 +119,26 @@ class Event(models.Model):
         return self.name
 
 class Participant(models.Model):
-    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='participants')
-    title = models.ForeignKey(Title, on_delete=models.SET_NULL, null=True, blank=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='participants')
+    title = models.ForeignKey(Title, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100, blank=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    address = models.TextField(blank=True, null=True)
-    gender = models.ForeignKey(Gender, on_delete=models.SET_NULL, null=True, blank=True)
-    ethnicity = models.ForeignKey(Ethnicity, on_delete=models.SET_NULL, null=True, blank=True)
+    address = models.TextField()
+    gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
+    ethnicity = models.ForeignKey(Ethnicity, on_delete=models.CASCADE)
     disability = models.BooleanField(default=False)
-    occupation = models.ForeignKey(Occupation, on_delete=models.SET_NULL, null=True, blank=True)
+    occupation = models.ForeignKey(Occupation, on_delete=models.CASCADE)
     organization = models.CharField(max_length=255, null=True, blank=True)
-    organization_designation = models.CharField(max_length=255, null=True, blank=True)
-    certification = models.BooleanField(default=False)
+    designation = models.CharField(max_length=255, null=True, blank=True, db_column='organization_designation')
+    certification = models.ForeignKey(CertifiedStatus, on_delete=models.CASCADE)
+    # certification = models.BooleanField(default=False)
     
     
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+
+
+

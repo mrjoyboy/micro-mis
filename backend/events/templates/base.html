@@ -17,7 +17,7 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/cdn.min.js" defer></script> -->
 
     <!-- HTMX (CDN) -->
-    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 
     {% block head %}{% endblock %}
 
@@ -30,6 +30,19 @@
 
         main {
             flex: 1;
+        }
+
+        label.required::after {
+            content: ' *' !important;
+            color: red;
+        }
+
+        label:has(select[required])::after {
+            content: '*';
+            color: red;
+            margin-left: 5px;
+            font-size: 1.2em;
+            vertical-align: middle;
         }
     </style>
 </head>

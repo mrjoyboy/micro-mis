@@ -1,13 +1,5 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    {% if form.instance.id %}
-        Edit Event: {{ form.instance.name }}
-    {% else %}
-        Create Event
-    {% endif %}
-{% endblock %}
-
 {% block content %}
 <div class="container mt-4">
     <h1 class="h3">
@@ -25,17 +17,62 @@
                 Event Information
             </div>
             <div class="card-body">
-                {% for field in form.visible_fields %}
+                <!-- Province Dropdown -->
                 <div class="mb-3">
-                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                    {{ field }}
-                    {% if field.help_text %}
-                    <div class="form-text">{{ field.help_text }}</div>
-                    {% endif %}
-                    {% if field.errors %}
-                    <div class="text-danger">{{ field.errors }}</div>
-                    {% endif %}
+                    <label for="id_province" class="form-label">Province</label>
+                    <select id="id_province" name="province" class="form-selet"
+                            hx-get="{% url 'ajax_load_districts' %}" 
+                            hx-target="#id_district" 
+                            hx-trigger="click">
+                        <option value="">Select Province</option>
+                        {% for province in form.fields.province.queryset %}
+                            <option value="{{ province.id }}" 
+                                    {% if form.instance.province and form.instance.province.id == province.id %}selected{% endif %}>
+                                {{ province.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
                 </div>
+
+                <!-- District Dropdown -->
+                <div class="mb-3">
+                    <label for="id_district" class="form-label">District</label>
+                    <select id="id_district" name="district" class="form-elect"
+                            hx-get="{% url 'ajax_load_municipalities' %}" 
+                            hx-target="#id_municipality" 
+                            hx-trigger="click">
+                        <option value="{{district.id}}">Select District</option>
+                        {% if form.instance.district %}
+                            <option value="{{ form.instance.district.id }}" selected>{{ form.instance.district.name }}</option>
+                        {% endif %}
+                    </select>
+                </div>
+
+                <!-- Municipality Dropdown -->
+                <div class="mb-3">
+                    <label for="id_municipality" class="form-label">Municipality</label>
+                    <select id="id_municipality" name="municipality" class="form-selet">
+                        <option value="{{municipality.id}}">Select Municipality</option>
+                        {% if form.instance.municipality %}
+                            <option value="{{ form.instance.municipality.id }}" selected>{{ form.instance.municipality.name }}</option>
+                        {% endif %}
+                    </select>
+                </div>
+
+                <!-- Other Fields -->
+                {% for field in form.visible_fields %}
+                    {% if field.name not in "province district municipality" %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.help_text %}
+                                <div class="form-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="text-danger">{{ field.errors }}</div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>

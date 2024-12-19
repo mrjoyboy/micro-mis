@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('events/', views.event_list, name='event_list'),
-    path('events/create/', views.event_create, name='event_create'),
-    path('events/edit/<int:pk>/', views.event_edit, name='event_edit'),
+    path('events/create/', views.event_form, name='event_create'),
+    path('events/edit/<int:pk>/', views.event_form, name='event_edit'),
     path('events/delete/<int:pk>/', views.event_delete, name='event_delete'),
     path('event/<int:pk>/', views.event_detail, name='event_detail'),
     path('events/<int:event_id>/participants/', views.participant_list, name='participant_list'),
@@ -25,4 +25,7 @@ urlpatterns = [
     path('eventtypes/create/', views.eventtype_create, name='eventtype_create'),
     path('eventtypes/<int:pk>/edit/', views.eventtype_edit, name='eventtype_edit'),
     path('eventtypes/<int:pk>/delete/', views.eventtype_delete, name='eventtype_delete'),
+
+    path('ajax/load-districts/', views.load_districts, name='ajax_load_districts'),
+    path('ajax/load-municipalities/', views.load_municipalities, name='ajax_load_municipalities'),
 ]

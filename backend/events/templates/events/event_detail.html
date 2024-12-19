@@ -123,7 +123,7 @@
                     {% endif %}
                 </td>
                 <td>{{ participant.organization|default:"N/A" }}</td>
-                <td>{{ participant.organization_designation|default:"N/A" }}</td>
+                <td>{{ participant.designation|default:"N/A" }}</td>
                 <td>
                     {% if participant.disability %}
                     <span class="badge bg-warning">Yes</span>

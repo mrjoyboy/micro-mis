@@ -6,6 +6,23 @@ from openpyxl import Workbook
 from django.contrib import messages
 from django.http import HttpResponse, Http404, JsonResponse
 from django.db.models import Count
+from django.template.loader import render_to_string
+
+
+def load_districts(request):
+    province_id = request.GET.get('province')
+    districts = District.objects.filter(province_id=province_id).order_by('name')
+    # return JsonResponse(list(districts.values('id', 'name')), safe=False)
+    html = render_to_string('partials/district_options.html', {'districts': districts})
+    return HttpResponse(html)
+
+def load_municipalities(request):
+    district_id = request.GET.get('district')
+    municipalities = Municipality.objects.filter(district_id=district_id).order_by('name')
+    # return JsonResponse(list(municipalities.values('id', 'name')), safe=False)
+    html = render_to_string('partials/municipality_options.html', {'municipalities': municipalities})
+    return HttpResponse(html)
+
 
 def homepage(request):
     return render(request, 'homepage.html')
@@ -14,27 +31,42 @@ def event_list(request):
     events = Event.objects.all()
     return render(request, 'events/event_list.html', {'events': events})
 
-def event_create(request):
-    if request.method == 'POST':
-        form = EventForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Event created successfully.")
-            return redirect('event_list')
-    else:
-        form = EventForm()
-    return render(request, 'events/event_form.html', {'form': form})
+# def event_create(request):
+#     if request.method == 'POST':
+#         form = EventForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Event created successfully.")
+#             return redirect('event_list')
+#     else:
+#         form = EventForm()
+#     return render(request, 'events/event_form.html', {'form': form})
 
-def event_edit(request, pk):
-    event = Event.objects.get(pk=pk)
+# def event_edit(request, pk):
+#     event = Event.objects.get(pk=pk)
+#     if request.method == 'POST':
+#         form = EventForm(request.POST, instance=event)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Event updated successfully.")
+#             return redirect('event_list')
+#     else:
+#         form = EventForm(instance=event)
+#     return render(request, 'events/event_form.html', {'form': form})
+def event_form(request, pk=None):
+    if pk:
+        event = get_object_or_404(Event, pk=pk)
+    else:
+        event = None
+
     if request.method == 'POST':
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
-            messages.success(request, "Event updated successfully.")
             return redirect('event_list')
     else:
         form = EventForm(instance=event)
+
     return render(request, 'events/event_form.html', {'form': form})
 
 def event_delete(request, pk):
@@ -89,7 +121,7 @@ def participant_create(request, event_id):
             participant.event = event
             participant.save()
             messages.success(request, "Participant added successfully.")
-            return redirect('participant_list', event_id=event.id)
+            return redirect('event_detail', pk=event.id)
     else:
         form = ParticipantForm()
     return render(request, 'events/participant_form.html', {'form': form, 'event': event})
@@ -102,7 +134,7 @@ def participant_edit(request, participant_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Participant updated successfully.")
-            return redirect('participant_list', event_id=participant.event.id)
+            return redirect('event_detail', pk=participant.event.id)
     else:
         form = ParticipantForm(instance=participant)
     return render(request, 'events/participant_form.html', {'form': form, 'event': participant.event})
@@ -121,7 +153,7 @@ def import_participants(request, event_id):
         wb = openpyxl.load_workbook(excel_file)
         sheet = wb.active
         for row in sheet.iter_rows(min_row=2, values_only=True):  # Skip header row
-            title, first_name, last_name, email, phone_number, address, gender, ethnicity, disability, occupation, organization, organization_designation, certification = row
+            title, first_name, last_name, email, phone_number, address, gender, ethnicity, disability, occupation, organization, designation, certification = row
             # Find or create ethnicity and occupation
             ethnicity_obj, created = Ethnicity.objects.get_or_create(name=ethnicity)
             occupation_obj, created = Occupation.objects.get_or_create(name=occupation)
