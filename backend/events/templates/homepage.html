@@ -8,9 +8,9 @@
     <div class="text-center mb-5">
         <h1 class="display-4">Welcome to Event Management System</h1>
         <p class="lead">Streamline your events, projects, and participants with ease.</p>
-        <a href="{% url 'event_list' %}" class="btn btn-primary btn-lg">
+        <!-- <a href="{% url 'event_list' %}" class="btn btn-primary btn-lg">
             <i class="bi bi-calendar-event"></i> View Events
-        </a>
+        </a> -->
         <a href="{% url 'project_list' %}" class="btn btn-secondary btn-lg">
             <i class="bi bi-briefcase"></i> View Projects
         </a>
@@ -22,7 +22,8 @@
     <!-- Features Section -->
     <div class="row text-center">
         <!-- Manage Events -->
-        <div class="col-md-4 mb-4">
+        {% comment %}
+        <!-- <div class="col-md-4 mb-4">
             <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title"><i class="bi bi-calendar3"></i> Manage Events</h5>
@@ -30,7 +31,8 @@
                     <a href="{% url 'event_create' %}" class="btn btn-outline-primary">Add Event</a>
                 </div>
             </div>
-        </div>
+        </div> -->
+        {% endcomment %}
 
         <!-- Manage Event Type -->
         <div class="col-md-4 mb-4">

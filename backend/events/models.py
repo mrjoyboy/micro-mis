@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 # Event Type Model
@@ -93,6 +94,15 @@ class Project(models.Model):
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
+
+    def __str__(self):
+        return self.name
+    
+class ProjectFile(models.Model):
+    name = models.CharField(max_length=255)
+    project = models.ForeignKey(Project, related_name='project_files', on_delete=models.CASCADE)
+    file = models.FileField(upload_to='project_files/')
+    uploaded_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.name

@@ -11,7 +11,13 @@
         <button type="submit" class="btn btn-success">
             <i class="bi bi-save"></i> Save
         </button>
+
+        {% if form.instance.id %}
+        <a href="{% url 'project_detail' form.instance.id %}" class="btn btn-secondary">Cancel</a>
+        {% else %}
         <a href="{% url 'project_list' %}" class="btn btn-secondary">Cancel</a>
+        {% endif %}
+
     </form>
 </div>
 {% endblock %}

@@ -32,17 +32,12 @@
                 <td>{{ project.start_date }}</td>
                 <td>{{ project.end_date }}</td>
                 <td>
+                    <a href="{% url 'project_detail' project.id %}" class="btn btn-primary btn-sm">
+                        <i class="bi bi-eye"></i> View
+                    </a>
                     <a href="{% url 'project_edit' project.id %}" class="btn btn-warning btn-sm">
                         <i class="bi bi-pencil"></i> Edit
                     </a>
-                    <button class="btn btn-danger btn-sm" 
-                        x-data 
-                        @click.prevent="if(confirm('Are you sure?')) { $refs.deleteForm.submit(); }">
-                        <i class="bi bi-trash"></i> Delete
-                    </button>
-                    <form x-ref="deleteForm" action="{% url 'project_delete' project.id %}" method="post" style="display:none;">
-                        {% csrf_token %}
-                    </form>
                 </td>
             </tr>
             {% endfor %}

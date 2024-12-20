@@ -1,35 +1,64 @@
 {% extends 'base.html' %}
 
+{% block title %}
+{% if form.instance.id %}
+Edit Event: {{ form.instance.name }}
+{% else %}
+Create Event
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
     <h1 class="h3">
         {% if form.instance.id %}
-            Edit Event: {{ form.instance.name }}
+        Edit Event: {{ form.instance.name }}
         {% else %}
-            Create Event
+        Create Event
         {% endif %}
     </h1>
 
-    <form method="post" class="mt-4">
+    <form method="post" enctype="multipart/form-data" class="mt-4">
         {% csrf_token %}
         <div class="card">
             <div class="card-header bg-dark text-white">
                 Event Information
             </div>
             <div class="card-body">
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="id_name" class="form-label">Event Name</label>
+                    {{ form.name }}
+                </div>
+
+                <!-- Start Date -->
+                <div class="mb-3">
+                    <label for="id_start_date" class="form-label">Start Date</label>
+                    {{ form.start_date }}
+                </div>
+
+                <!-- End Date -->
+                <div class="mb-3">
+                    <label for="id_end_date" class="form-label">End Date</label>
+                    {{ form.end_date }}
+                </div>
+
+                <!-- Event Type -->
+                <div class="mb-3">
+                    <label for="id_event_type" class="form-label">Event Type</label>
+                    {{ form.event_type }}
+                </div>
+
                 <!-- Province Dropdown -->
                 <div class="mb-3">
                     <label for="id_province" class="form-label">Province</label>
-                    <select id="id_province" name="province" class="form-selet"
-                            hx-get="{% url 'ajax_load_districts' %}" 
-                            hx-target="#id_district" 
-                            hx-trigger="click">
+                    <select id="id_province" name="province" class="form-selet" hx-get="{% url 'ajax_load_districts' %}"
+                        hx-target="#id_district" hx-trigger="change">
                         <option value="">Select Province</option>
                         {% for province in form.fields.province.queryset %}
-                            <option value="{{ province.id }}" 
-                                    {% if form.instance.province and form.instance.province.id == province.id %}selected{% endif %}>
-                                {{ province.name }}
-                            </option>
+                        <option value="{{ province.id }}" {% if form.instance.province and form.instance.province.id == province.id %}selected{% endif %}>
+                            {{ province.name }}
+                        </option>
                         {% endfor %}
                     </select>
                 </div>
@@ -38,12 +67,11 @@
                 <div class="mb-3">
                     <label for="id_district" class="form-label">District</label>
                     <select id="id_district" name="district" class="form-elect"
-                            hx-get="{% url 'ajax_load_municipalities' %}" 
-                            hx-target="#id_municipality" 
-                            hx-trigger="click">
+                        hx-get="{% url 'ajax_load_municipalities' %}" hx-target="#id_municipality" hx-trigger="change">
                         <option value="{{district.id}}">Select District</option>
                         {% if form.instance.district %}
-                            <option value="{{ form.instance.district.id }}" selected>{{ form.instance.district.name }}</option>
+                        <option value="{{ form.instance.district.id }}" selected>{{ form.instance.district.name }}
+                        </option>
                         {% endif %}
                     </select>
                 </div>
@@ -54,36 +82,63 @@
                     <select id="id_municipality" name="municipality" class="form-selet">
                         <option value="{{municipality.id}}">Select Municipality</option>
                         {% if form.instance.municipality %}
-                            <option value="{{ form.instance.municipality.id }}" selected>{{ form.instance.municipality.name }}</option>
+                        <option value="{{ form.instance.municipality.id }}" selected>{{ form.instance.municipality.name }}</option>
                         {% endif %}
                     </select>
                 </div>
 
-                <!-- Other Fields -->
-                {% for field in form.visible_fields %}
-                    {% if field.name not in "province district municipality" %}
-                        <div class="mb-3">
-                            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
-                            {{ field }}
-                            {% if field.help_text %}
-                                <div class="form-text">{{ field.help_text }}</div>
-                            {% endif %}
-                            {% if field.errors %}
-                                <div class="text-danger">{{ field.errors }}</div>
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                <!-- Ward No -->
+                <div class="mb-3">
+                    <label for="id_ward_no" class="form-label">Ward No</label>
+                    {{ form.ward_no }}
+                </div>
+
+                <!-- Venue -->
+                <div class="mb-3">
+                    <label for="id_venue" class="form-label">Venue</label>
+                    {{ form.venue }}
+                </div>
+
+                <!-- Latitude -->
+                <div class="mb-3">
+                    <label for="id_latitude" class="form-label">Latitude</label>
+                    {{ form.latitude }}
+                </div>
+
+                <!-- Longitude -->
+                <div class="mb-3">
+                    <label for="id_longitude" class="form-label">Longitude</label>
+                    {{ form.longitude }}
+                </div>
+
+                <!-- Organizing Partners -->
+                <div class="mb-3">
+                    <label for="id_organizing_partners" class="form-label">Organizing Partners</label>
+                    {{ form.organizing_partners }}
+                </div>
+
+                <!-- Funding Partners -->
+                <div class="mb-3">
+                    <label for="id_funding_partners" class="form-label">Funding Partners</label>
+                    {{ form.funding_partners }}
+                </div>
             </div>
         </div>
 
+        <!-- Submit Button -->
         <div class="mt-3">
             <button type="submit" class="btn btn-success">
                 <i class="bi bi-check-circle"></i> Save
             </button>
-            <a href="{% url 'event_list' %}" class="btn btn-secondary">
+            {% if form.instance.id %}
+            <a href="{% url 'project_detail' form.instance.project.id  %}" class="btn btn-secondary">
                 <i class="bi bi-x-circle"></i> Cancel
             </a>
+            {% else %}
+            <a href="{% url 'project_detail' project.id  %}" class="btn btn-secondary">
+                <i class="bi bi-x-circle"></i> Cancel
+            </a>
+            {% endif %}
         </div>
     </form>
 </div>

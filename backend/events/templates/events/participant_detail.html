@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Participant: {{ participant.first_name }} {{ participant.last_name }}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <a href="{% url 'event_detail' participant.event.id %}" class="btn btn-secondary mb-3">
+        <i class="bi bi-arrow-left"></i> Back to Event
+    </a>
+
+    <h1 class="h3">Participant: {{ participant.first_name }} {{ participant.last_name }}</h1>
+
+    <div class="card mt-4">
+        <div class="card-header bg-dark text-white">
+            Participant Information
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Personal Details</h5>
+            <p><strong>Name:</strong> {{ participant.first_name }} {{ participant.last_name }}</p>
+            <p><strong>Email:</strong> {{ participant.email }}</p>
+            <p><strong>Phone Number:</strong> {{ participant.phone_number|default:"N/A" }}</p>
+            <p><strong>Address:</strong> {{ participant.address|default:"N/A" }}</p>
+
+            <hr>
+
+            <h5 class="card-title">Additional Information</h5>
+            <p><strong>Gender:</strong> {{ participant.gender.name|default:"N/A" }}</p>
+            <p><strong>Ethnicity:</strong> {{ participant.ethnicity.name|default:"N/A" }}</p>
+            <p><strong>Occupation:</strong> {{ participant.occupation.name|default:"N/A" }}</p>
+            <p><strong>Disability:</strong> {{ participant.disability|yesno:"Yes,No" }}</p>
+            <p><strong>Organization:</strong> {{ participant.organization|default:"N/A" }}</p>
+            <p><strong>Designation:</strong> {{ participant.organization_designation|default:"N/A" }}</p>
+            <p><strong>Certification:</strong> {{ participant.certification|yesno:"Yes,No" }}</p>
+
+            <hr>
+
+            <h5 class="card-title">Event Information</h5>
+            <p><strong>Event Name:</strong> {{ participant.event.name }}</p>
+            <p><strong>Event Start Date:</strong> {{ participant.event.start_date|date:"M d, Y" }}</p>
+            <p><strong>Event End Date:</strong> {{ participant.event.end_date|date:"M d, Y" }}</p>
+            <p><strong>Province:</strong> {{ participant.event.province.name }}</p>
+            <p><strong>District:</strong> {{ participant.event.district.name }}</p>
+            <p><strong>Municipality:</strong> {{ participant.event.municipality.name }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

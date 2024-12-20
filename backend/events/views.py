@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Event, EventType, Province, District, Municipality, Participant, Project, Ethnicity, Occupation
-from .forms import EventForm, ParticipantForm, ProjectForm, EventTypeForm
+from .models import Event, EventType, Province, District, Municipality, Participant, Project, Ethnicity, Occupation, ProjectFile
+from .forms import EventForm, ParticipantForm, ProjectForm, EventTypeForm, ProjectFileForm
 import openpyxl
 from openpyxl import Workbook
 from django.contrib import messages
 from django.http import HttpResponse, Http404, JsonResponse
 from django.db.models import Count
 from django.template.loader import render_to_string
+from django.urls import reverse
 
 
 def load_districts(request):
@@ -53,27 +54,71 @@ def event_list(request):
 #     else:
 #         form = EventForm(instance=event)
 #     return render(request, 'events/event_form.html', {'form': form})
-def event_form(request, pk=None):
-    if pk:
-        event = get_object_or_404(Event, pk=pk)
-    else:
-        event = None
+# def event_form(request, pk=None):
+#     if pk:
+#         event = get_object_or_404(Event, pk=pk)
+#     else:
+#         event = None
 
-    if request.method == 'POST':
+#     if request.method == 'POST':
+#         form = EventForm(request.POST, instance=event)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('event_list')
+#     else:
+#         form = EventForm(instance=event)
+
+#     return render(request, 'events/event_form.html', {'form': form})
+
+def event_create(request, project_id=None):
+    """
+    View to create a new event. Optionally links it to a project if `project_id` is provided.
+    """
+    project = None
+    if project_id:
+        project = get_object_or_404(Project, id=project_id)
+
+    if request.method == "POST":
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save(commit=False)
+            if project:
+                event.project = project
+            event.save()
+            return redirect(reverse('project_detail', kwargs={'pk': project.id}) if project else reverse('event_list'))
+    else:
+        form = EventForm()
+
+    return render(request, 'events/event_form.html', {'form': form, 'project': project})
+
+def event_edit(request, project_id, pk):
+    """
+    View to edit an existing event.
+    """
+    event = get_object_or_404(Event, pk=pk)
+    if request.method == "POST":
         form = EventForm(request.POST, instance=event)
         if form.is_valid():
             form.save()
-            return redirect('event_list')
+            if event.project:
+                return redirect(reverse('project_detail', kwargs={'pk': event.project.id}))
+            return redirect(reverse('event_list'))
     else:
         form = EventForm(instance=event)
 
-    return render(request, 'events/event_form.html', {'form': form})
+    return render(request, 'events/event_form.html', {'form': form, 'event': event})
+
 
 def event_delete(request, pk):
-    event = Event.objects.get(pk=pk)
+    """
+    View to delete an event.
+    """
+    event = get_object_or_404(Event, pk=pk)
+    project_id = event.project.id if event.project else None
     event.delete()
-    messages.success(request, "Event deleted successfully.")
-    return redirect('event_list')
+    if project_id:
+        return redirect(reverse('project_detail', kwargs={'pk': project_id}))
+    return redirect(reverse('event_list'))
 
 
 def event_detail(request, pk):
@@ -138,6 +183,13 @@ def participant_edit(request, participant_id):
     else:
         form = ParticipantForm(instance=participant)
     return render(request, 'events/participant_form.html', {'form': form, 'event': participant.event})
+
+def participant_detail(request, pk):
+    """
+    View to display details of a single participant.
+    """
+    participant = get_object_or_404(Participant, pk=pk)
+    return render(request, 'events/participant_detail.html', {'participant': participant})
 
 # Delete a participant
 def participant_delete(request, participant_id):
@@ -257,8 +309,11 @@ def project_create(request):
     if request.method == 'POST':
         form = ProjectForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('project_list')
+            project = form.save()
+            messages.success(request, "Project created successfully.")
+            return redirect('project_detail', pk=project.id)  # Redirect to the project detail page
+        else:
+            messages.error(request, "There was an error creating the project. Please check the form.")
     else:
         form = ProjectForm()
     return render(request, 'project/project_form.html', {'form': form, 'title': 'Add Project'})
@@ -270,10 +325,15 @@ def project_edit(request, pk):
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save()
-            return redirect('project_list')
+            return redirect('project_detail', pk=pk)
     else:
         form = ProjectForm(instance=project)
     return render(request, 'project/project_form.html', {'form': form, 'title': 'Edit Project'})
+
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    events = Event.objects.filter(project=project).order_by('start_date')  # Assuming an Event model has a `project` field
+    return render(request, 'project/project_detail.html', {'project': project, 'events': events})
 
 # Delete a project
 def project_delete(request, pk):
@@ -283,6 +343,41 @@ def project_delete(request, pk):
         return JsonResponse({'status': 'success'})
     return render(request, 'project/project_confirm_delete.html', {'project': project})
 
+def add_project_file(request, project_id):
+    """
+    View to add a new project file to a specific project.
+    """
+    project = get_object_or_404(Project, id=project_id)
+
+    if request.method == 'POST':
+        form = ProjectFileForm(request.POST, request.FILES)
+        # breakpoint()
+        if form.is_valid():
+            # Associate the file with the project
+            project_file = form.save(commit=False)
+            project_file.project = project
+            project_file.save()
+            # form.save()
+            # breakpoint()
+            messages.success(request, 'Project file has been uploaded successfully!')
+            return redirect('project_detail', pk=project.id)
+        else:
+            messages.error(request, 'There was an error with your file upload.')
+
+    else:
+        form = ProjectFileForm()
+
+    return render(request, 'project/add_project_file.html', {'form': form, 'project': project})
+
+def delete_project_file(request, file_id):
+    """
+    View to delete a specific project file.
+    """
+    file = get_object_or_404(ProjectFile, id=file_id)
+    project_id = file.project.id  # Save project ID to redirect after deletion
+    file.delete()
+    messages.success(request, 'File deleted successfully.')
+    return redirect('project_detail', pk=project_id)
 
 
 # EVENT TYPES
