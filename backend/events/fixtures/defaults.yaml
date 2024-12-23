@@ -134,5 +134,22 @@
     name: Rural Municipality
     short_code: RM
 
+# Certification status
+- model: events.certifiedStatus
+  pk: 1
+  fields:
+    name: Certified
+- model: events.certifiedStatus
+  pk: 2
+  fields:
+    name: Not Certified
+- model: events.certifiedStatus
+  pk: 3
+  fields:
+    name: Observer
+
+
+
+
 
 
