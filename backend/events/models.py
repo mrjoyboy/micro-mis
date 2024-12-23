@@ -138,7 +138,11 @@ class Participant(models.Model):
     address = models.TextField()
     gender = models.ForeignKey(Gender, on_delete=models.CASCADE)
     ethnicity = models.ForeignKey(Ethnicity, on_delete=models.CASCADE)
-    disability = models.BooleanField(default=False)
+    # disability = models.BooleanField(default=False)
+    disability=models.BooleanField(choices=[
+        (True, 'Yes'),
+        (False, 'No')
+    ])
     occupation = models.ForeignKey(Occupation, on_delete=models.CASCADE)
     organization = models.CharField(max_length=255, null=True, blank=True)
     designation = models.CharField(max_length=255, null=True, blank=True, db_column='organization_designation')
