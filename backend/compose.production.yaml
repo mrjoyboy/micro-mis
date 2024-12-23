@@ -1,0 +1,54 @@
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    container_name: ${COMPOSE_PROJECT_NAME}_django
+    # command: gunicorn --bind 0.0.0.0:8000 micromis.wsgi:application
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - micromisgrid
+    environment:
+      # - DJANGO_SETTINGS_MODULE=micromis.settings
+      - SECRET_KEY=${SECRET_KEY}
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db/${DB_NAME}/${DB_NAME}
+      # - DATABASE_URL=postgres://postgres:password@db:5432/postgres
+
+  db:
+    image: postgres:16
+    container_name: ${COMPOSE_PROJECT_NAME}_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    networks:
+      - micromisgrid
+
+  nginx:
+    image: nginx:latest
+    container_name: ${COMPOSE_PROJECT_NAME}_nginx
+    ports:
+      - "50100:80"
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+      - ./static:/static
+      - ./media:/media
+    depends_on:
+      - django
+    networks:
+      - micromisgrid
+
+volumes:
+  postgres_data:
+
+
+networks:
+  micromisgrid:
+    driver: bridge
